@@ -4,7 +4,7 @@ class BaseClass {
     private String baseAttribute1;
     private String baseAttribute2;
 
-    BaseClass(Builder builder) {
+    BaseClass(ExtendableBuilder builder) {
         baseAttribute1 = builder.baseAttribute1;
         baseAttribute2 = builder.baseAttribute2;
     }
@@ -17,16 +17,30 @@ class BaseClass {
         return baseAttribute2;
     }
 
-    static abstract class Builder<T extends Builder, R extends BaseClass> {
+    public static Builder baseClassBuilder() {
+        return new Builder();
+    }
+
+    public static class Builder extends ExtendableBuilder<Builder, BaseClass> {
+
+        @Override
+        public BaseClass build() {
+            return new BaseClass(this);
+        }
+
+        @Override
+        public Builder getThis() {
+            return this;
+        }
+    }
+
+    static abstract class ExtendableBuilder<T extends ExtendableBuilder, R extends BaseClass>
+            implements ExtendableBuilders<T, R> {
         private String baseAttribute1;
         private String baseAttribute2;
 
-        Builder() {
+        ExtendableBuilder() {
         }
-
-        abstract R build();
-
-        abstract T getThis();
 
         public T withBaseAttribute1(String baseAttribute1) {
             this.baseAttribute1 = baseAttribute1;

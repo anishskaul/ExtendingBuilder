@@ -4,7 +4,7 @@ public class LevelTwoClass extends LevelOneClass {
     private String levelTwoAttribute1;
     private String levelTwoAttribute2;
 
-    private LevelTwoClass(Builder builder) {
+    private LevelTwoClass(ExtendableBuilder builder) {
         super(builder);
         levelTwoAttribute1 = builder.levelTwoAttribute1;
         levelTwoAttribute2 = builder.levelTwoAttribute2;
@@ -18,35 +18,39 @@ public class LevelTwoClass extends LevelOneClass {
         return levelTwoAttribute2;
     }
 
-    public static Builder l2Builder() {
+    public static Builder levelTwoClassBuilder() {
         return new Builder();
     }
 
-    public static final class Builder extends LevelOneBaseBuilder<Builder, LevelTwoClass> {
-        private String levelTwoAttribute1;
-        private String levelTwoAttribute2;
-
-        private Builder() {
-        }
+    public static final class Builder extends ExtendableBuilder<Builder, LevelTwoClass> {
 
         @Override
-        LevelTwoClass build() {
+        public LevelTwoClass build() {
             return new LevelTwoClass(this);
         }
 
         @Override
-        Builder getThis() {
+        public Builder getThis() {
             return this;
         }
+    }
 
-        public Builder withLevelTwoAttribute1(String levelTwoAttribute1) {
+    static abstract class ExtendableBuilder<T extends ExtendableBuilder, R extends LevelTwoClass>
+            extends LevelOneClass.ExtendableBuilder<T, R> {
+        private String levelTwoAttribute1;
+        private String levelTwoAttribute2;
+
+        private ExtendableBuilder() {
+        }
+
+        public T withLevelTwoAttribute1(String levelTwoAttribute1) {
             this.levelTwoAttribute1 = levelTwoAttribute1;
-            return this;
+            return getThis();
         }
 
-        public Builder withLevelTwoAttribute2(String levelTwoAttribute2) {
+        public T withLevelTwoAttribute2(String levelTwoAttribute2) {
             this.levelTwoAttribute2 = levelTwoAttribute2;
-            return this;
+            return getThis();
         }
     }
 }

@@ -4,7 +4,7 @@ public class LevelOneClass extends BaseClass {
     private String levelOneAttribute1;
     private String levelOneAttribute2;
 
-    LevelOneClass(LevelOneBaseBuilder builder) {
+    LevelOneClass(ExtendableBuilder builder) {
         super(builder);
         levelOneAttribute1 = builder.levelOneAttribute1;
         levelOneAttribute2 = builder.levelOneAttribute2;
@@ -18,29 +18,29 @@ public class LevelOneClass extends BaseClass {
         return levelOneAttribute2;
     }
 
-    public static Builder builder() {
+    public static Builder levelOneClassBuilder() {
         return new Builder();
     }
 
-    public static final class Builder extends LevelOneBaseBuilder<Builder, LevelOneClass> {
+    public static final class Builder extends ExtendableBuilder<Builder, LevelOneClass> {
 
         @Override
-        LevelOneClass build() {
+        public LevelOneClass build() {
             return new LevelOneClass(this);
         }
 
         @Override
-        Builder getThis() {
+        public Builder getThis() {
             return this;
         }
     }
 
-    static abstract class LevelOneBaseBuilder<T extends BaseClass.Builder, R extends LevelOneClass>
-            extends BaseClass.Builder<T, R> {
+    static abstract class ExtendableBuilder<T extends ExtendableBuilder, R extends LevelOneClass>
+            extends BaseClass.ExtendableBuilder<T, R> {
         private String levelOneAttribute1;
         private String levelOneAttribute2;
 
-        LevelOneBaseBuilder() {
+        ExtendableBuilder() {
         }
 
         public T withLevelOneAttribute1(String levelOneAttribute1) {

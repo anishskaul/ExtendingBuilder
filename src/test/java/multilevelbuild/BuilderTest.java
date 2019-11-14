@@ -16,7 +16,7 @@ class BuilderTest {
 
     @Test
     void testLevelTwoBuilder() {
-        LevelTwoClass target = LevelTwoClass.l2Builder()
+        LevelTwoClass target = LevelTwoClass.levelTwoClassBuilder()
                 .withBaseAttribute1(BASE_1)
                 .withLevelOneAttribute1(LEVEL_ONE_ONE)
                 .withLevelTwoAttribute1(LEVEL_TWO_ONE)
@@ -37,7 +37,7 @@ class BuilderTest {
 
     @Test
     void testLevelOneBuilder() {
-        LevelOneClass target = LevelOneClass.builder()
+        LevelOneClass target = LevelOneClass.levelOneClassBuilder()
                 .withBaseAttribute1(BASE_1)
                 .withLevelOneAttribute1(LEVEL_ONE_ONE)
                 .withLevelOneAttribute2(LEVEL_ONE_TWO)
