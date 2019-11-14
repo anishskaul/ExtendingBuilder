@@ -21,7 +21,7 @@ class BaseClass {
         return new Builder();
     }
 
-    public static class Builder extends ExtendableBuilder<Builder, BaseClass> {
+    public static final class Builder extends ExtendableBuilder<Builder, BaseClass> {
 
         @Override
         public BaseClass build() {
@@ -42,12 +42,12 @@ class BaseClass {
         ExtendableBuilder() {
         }
 
-        public T withBaseAttribute1(String baseAttribute1) {
+        public final T withBaseAttribute1(String baseAttribute1) {
             this.baseAttribute1 = baseAttribute1;
             return getThis();
         }
 
-        public T withBaseAttribute2(String baseAttribute2) {
+        public final T withBaseAttribute2(String baseAttribute2) {
             this.baseAttribute2 = baseAttribute2;
             return getThis();
         }

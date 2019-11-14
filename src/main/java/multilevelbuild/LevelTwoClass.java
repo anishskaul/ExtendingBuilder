@@ -43,12 +43,12 @@ public class LevelTwoClass extends LevelOneClass {
         private ExtendableBuilder() {
         }
 
-        public T withLevelTwoAttribute1(String levelTwoAttribute1) {
+        public final T withLevelTwoAttribute1(String levelTwoAttribute1) {
             this.levelTwoAttribute1 = levelTwoAttribute1;
             return getThis();
         }
 
-        public T withLevelTwoAttribute2(String levelTwoAttribute2) {
+        public final T withLevelTwoAttribute2(String levelTwoAttribute2) {
             this.levelTwoAttribute2 = levelTwoAttribute2;
             return getThis();
         }
